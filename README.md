@@ -2,7 +2,7 @@ After creating a staking chain, it is vital to distribute staking coins across a
 
  
 
-##Dependencies/Prerequisites :
+## Dependencies/Prerequisites :
 Docker/Docker CE installed https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
 python3 installed `sudo apt-get python3`
@@ -11,7 +11,7 @@ python3 requests installed `pip install requests`
 
 Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see {LINK TO ASSET CHAIN TUT} if you have not already.
 
-##Tutorial
+## Tutorial
 
 Clone the repo `https://github.com/alrighttt/dockersegid
 
