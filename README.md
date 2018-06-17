@@ -2,41 +2,53 @@ After creating a staking chain, it is vital to distribute staking coins across a
 
  
 
-Prequisites:
+##Dependencies/Prerequisites :
 Docker/Docker CE installed https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. PLease see {LINK TO ASSET CHAIN TUT} if you have not. 
+python3 installed `sudo apt-get python3`
 
-The script used to generate the addresses will require the use of `komodo-cli` command. If you haven't already created a symblink to `/usr/local/bin/`
-`sudo ln -sf /home/$USER/komodo/src/komodo-cli /usr/local/bin/komodo-cli`
-`sudo ln -sf /home/$USER/komodo/src/komodod /usr/local/bin/komodod`
+python3 requests installed `pip install requests`
 
+Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see {LINK TO ASSET CHAIN TUT} if you have not already.
+
+##Tutorial
 
 Clone the repo `https://github.com/alrighttt/dockersegid
 
-`sudo ln -sf /home/$USER/komodo/src/komodo-cli /usr/local/bin/komodo-cli`
-`sudo ln -sf /home/$USER/komodo/src/komodod /usr/local/bin/komodod`
+The first step is to create the docker image. Run 
+```shell
+cd dockersegid
+sudo docker build -t komodod .
+``` 
 
-If you currently have a wallet.dat file in `~/.komodo/<CHAINNAME>` change the name of it to something for now and restart the daemon. Running the `./generateaddresses` script will generate up to a couple hundred addresses, and should not be done on a wallet.dat you plan to continually use. 
+Edit the `config.py` file to the appropriate RPC settings for the node you will be generating the addresses from. You will also be funding all 64 segid addresses from this node, so it must have a balance. The RPC settings can be found in `~/.komodod/<CHAINNAME>/<CHAINNAME>.conf`. The IP should not be changed unless you are running the node from a separate computer. If you are running the node on a separate computer, ensure that the RPC port is open. 
 
-Ensure that your node is running with a wallet.dat with no important addresses imported to it. Edit the `generateaddresses.sh` script's config zone to reflect the values found in `~/.komodo/<CHAINNAME>/<CHAINNAME>.conf`. It's recommended to run this script on the same computer as the node is running. If for some reason you would like to do it from a different computer, ensure that the RPC port is open on the node's computer and set the `rpcip` value in the script to node's IP. 
+Edit the `dockerstart.sh` file. Set PASSWD to a long string of random characters. Set SEEDIP to the IP of the node the docker nodes will connect to. The node's node must have it's p2p port open in order for other nodes to connect to it. Edit the `ac_parameters` to match the parameters of your chain. Make sure you have every `ac_parameter` you would use to start a typical node on your chain.
 
-Run the `./generateaddresses.sh` script. Check that it generated the file `list.py` properly. This file is the basis for most of the scripts, and it's vital that it is the correct format. This file is an array including an address with corresponding pubkey/privkey for each segid in the format `[segid, pubkey, privkey, address]` . THIS FILE CONTAINS THE PRIVATE KEYS FOR EACH ADDRESS. KEEP IT SAFE. 
+Edit the `kmdcli` script. Change `-rpcpassword` value to the same value as `PASSWD` set in `dockerstart.sh`.
 
-double check that it generated `addresslist` properly. This will be a file with 64 addresses, one for each segid. 
+Stop your node's daemon. 
+```shell
+cd ~/komodo/src
+./komodo-cli -ac_name=<CHAINNAME> stop
+```
+Rename the `wallet.dat` found in the `~/.komodo/<CHAINNAME>/` directory. Running the `./generateaddresses` script will generate up to a couple hundred addresses and should not be done on a wallet.dat you plan to continually use. Restart the node and ensure that it is running with a newly created wallet.dat. 
 
-edit `startdocker` script. 
-Change the RPCUSER, RPCPASS and seednode values along with the ac_params for the chain. RPCUSER can be anything. RPCPASS should be a long random password. The seednode value should be the IP of a node you would like the docker containers to connect to.
+Run 
+```shell
+cd ~/dockersegid
+./generateaddresses.py >> list.py
+```
+Check that it generated the file `list.py` properly. This file is the basis for the scripts, and it's vital that it is the correct format. This file is an array including an address with corresponding pubkey/privkey for each segid in the format `[segid, pubkey, privkey, address]` . 
+**THIS FILE CONTAINS THE PRIVATE KEYS FOR EACH ADDRESS. KEEP IT SAFE.**
 
-Edit the `kmdcli` script to reflect the same rpcuser and rpcpass values in `startdocker` script
+Run `./launchcontainers` Wait for each to launch.
 
-Run `sudo ./launchcontainers` Wait for each to launch 
+Run `./importprivkey` This will import the private key to each docker container's node.
 
-Run `sudo ./importprivkey` This will import the private key for each corresponding pubkey.
+Run `./sendmany64 100`. This will send 100 coins to each docker node's komodod. Change `100` to how ever many coins you would like each docker container to stake. 
 
-On the node you will fund the staking daemons from, run the `./fund64 script
-
-You can check that each node received these coins by running `sudo ./kmdall "getbalance"
+You can check that each node received these coins by running `./kmdcliall "getbalance". This `kmdall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `./kmdcli 40 "getbalance"` 
 
 Once you have confirmed that each node has received coins, do `sudo ./kmdall "setgenerate true 1"
 
