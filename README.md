@@ -49,6 +49,6 @@ Run `./sendmany64 100`. This will send 100 coins to each docker node's komodod. 
 
 You can check that each node received these coins by running `./kmdcliall "getbalance"`. This `kmdall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `./kmdcli 40 "getbalance"` 
 
-Once you have confirmed that each node has received coins, do `sudo ./kmdall "setgenerate true 1"
+Once you have confirmed that each node has received coins, run `./kmdall "setgenerate true 1"`
 
 As soon as the coins are eligible to stake all 64 nodes will begin to stake.
