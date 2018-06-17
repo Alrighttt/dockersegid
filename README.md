@@ -1,4 +1,4 @@
-After creating a staking chain, it is vital to distribute staking coins across all 64 segids. If there is not at least one UTXO staking in each segid, this may give someone the ability to 51% attack the chain. This can be done easily using this repo{LINK TO DOCKER REPO}. 
+After creating a staking chain, it is vital to distribute staking coins across all 64 segids. If there is not at least one UTXO staking in each segid, this may give someone the ability to 51% attack the chain. This can be done easily using this repo.
 
  
 
@@ -9,14 +9,13 @@ python3 installed `sudo apt-get python3`
 
 python3 requests installed `pip install requests`
 
-Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see {LINK TO ASSET CHAIN TUT} if you have not already.
+Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see [this tutorial](https://komodo-platform.readthedocs.io/en/latest/komodo/create-Komodo-Assetchain.html) if you have not already.
 
 ## Tutorial
 
-Clone the repo `https://github.com/alrighttt/dockersegid
-
 The first step is to create the docker image. Run 
 ```shell
+git clone https://github.com/alrighttt/dockersegid
 cd dockersegid
 sudo docker build -t komodod .
 ``` 
