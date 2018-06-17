@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SEGID=$1
+COMMAND0=$2
+COMMAND1=$3
+COMMAND2=$4
+
+docker exec segid$SEGID komodo-cli -ac_name=51STAKE -rpcuser=RPCUSER -rpcpassword=RPCPASS98fjf9ufj9uj9dj3di3jdi3dgsfouoii2oii2oi2oi $COMMAND0 $COMMAND1 $COMMAND2
