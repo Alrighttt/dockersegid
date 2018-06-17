@@ -7,7 +7,7 @@ Docker/Docker CE installed https://docs.docker.com/install/linux/docker-ce/ubunt
 
 python3 installed `sudo apt-get python3`
 
-python3 requests installed `pip install requests`
+python3 requests installed `pip3 install requests`
 
 Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see [this tutorial](https://komodo-platform.readthedocs.io/en/latest/komodo/create-Komodo-Assetchain.html) if you have not already.
 
