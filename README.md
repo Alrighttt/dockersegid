@@ -60,8 +60,8 @@ Run `sudo ./importprivkey` This will import the private key to each docker conta
 
 Run `./sendmany64 100`. This will send 100 coins to each docker node's komodod. Change `100` to how ever many coins you would like each docker container to stake. 
 
-You can check that each node received these coins by running `sudo ./kmdcliall "getbalance"`. This `kmdall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `sudo ./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `sudo ./kmdcli 40 "getbalance"` 
+You can check that each node received these coins by running `sudo ./kmdcliall "getbalance"`. This `kmdcliall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `sudo ./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `sudo ./kmdcli 40 "getbalance"` 
 
-Once you have confirmed that each node has received coins, run `./kmdall "setgenerate true 1"`
+Once you have confirmed that each node has received coins, run `sudo ./kmdcliall "setgenerate true 1"`
 
 As soon as the coins are eligible to stake all 64 nodes will begin to stake.
