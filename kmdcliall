@@ -8,4 +8,4 @@ arg1 = sys.argv[1]
 print(arg1)
 
 for e in segids:
-  subprocess.call("echo segid" + e[0] +" && ./kmdcli " + e[0] + " " + arg1, shell=True)
+  subprocess.call("echo segid" + str(e[0]) +" && ./kmdcli " + str(e[0]) + " " + arg1, shell=True)
