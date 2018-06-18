@@ -5,9 +5,12 @@ After creating a staking chain, it is vital to distribute staking coins across a
 ## Dependencies/Prerequisites :
 Docker/Docker CE installed https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-python3 installed `sudo apt-get python3`
-
-python3 requests installed `pip3 install requests`
+python3 and requests installed 
+```shell 
+sudo apt-get install python3`
+sudo apt-get install python3-pip
+pip3 install requests
+```
 
 Komodod installed and running. This tutorial assumes you have already created a Proof of Stake chain, and you have a node running on the computer you're using. Please see [this tutorial](https://komodo-platform.readthedocs.io/en/latest/komodo/create-Komodo-Assetchain.html) if you have not already.
 
