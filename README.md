@@ -7,7 +7,7 @@ Docker/Docker CE installed https://docs.docker.com/install/linux/docker-ce/ubunt
 
 python3 and requests installed 
 ```shell 
-sudo apt-get install python3`
+sudo apt-get install python3
 sudo apt-get install python3-pip
 pip3 install requests
 ```
