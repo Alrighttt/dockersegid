@@ -29,12 +29,13 @@ Edit the `dockerstart.sh` file. Set PASSWD to a long string of random characters
 
 Edit the `kmdcli` script. Change `-rpcpassword` value to the same value as `PASSWD` set in `dockerstart.sh`.
 
-Stop your node's daemon. 
+Stop your node's daemon and rename the wallet.dat
 ```shell
 cd ~/komodo/src
 ./komodo-cli -ac_name=<CHAINNAME> stop
+mv ~/.komodo/<CHAINNAME>/wallet.dat ~/.komodo/<CHAINNAME>/wallet.dat.bk
 ```
-Rename the `wallet.dat` found in the `~/.komodo/<CHAINNAME>/` directory. Running the `./generateaddresses` script will generate up to a couple hundred addresses and should not be done on a wallet.dat you plan to continually use. Restart the node and ensure that it is running with a newly created wallet.dat. 
+Running the `./generateaddresses` script will generate up to a couple hundred addresses and should not be done on a wallet.dat you plan to continually use. Restart the node and ensure that it is running with a newly created wallet.dat. 
 
 Run 
 ```shell
@@ -43,6 +44,15 @@ cd ~/dockersegid
 ```
 Check that it generated the file `list.py` properly. This file is the basis for the scripts, and it's vital that it is the correct format. This file is an array including an address with corresponding pubkey/privkey for each segid in the format `[segid, pubkey, privkey, address]` . 
 **THIS FILE CONTAINS THE PRIVATE KEYS FOR EACH ADDRESS. KEEP IT SAFE.**
+
+After verifying list.py was created properly, stop the node, delete the wallet.dat, rename the other wallet.dat and restart the node
+```shell
+cd ~/komodo/src
+./komodo-cli -ac_name=<CHAINNAME> stop
+rm ~/.komodo/<CHAINNAME>/wallet.dat
+mv ~/.komodo/<CHAINNAME>/wallet.dat.bk ~/.komodo/<CHAINNAME>/wallet.dat
+```
+Now restart the node and go back to the repo's directory. `cd ~/dockersegid`
 
 Run `sudo ./launchcontainers` Wait for each to launch.
 
