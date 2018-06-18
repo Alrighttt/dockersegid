@@ -9,7 +9,7 @@ SEEDIP=127.0.0.1
 
 docker run -d --rm --name $SEGID -ti \
   --mount "src=$SEGID,dst=/home/komodo" \
-  kmdplatform/komodod \
+  komodod \
   -rpcuser=$USER \
   -rpcpassword=$PASSWD \
   -pubkey=$PUBKEY \
