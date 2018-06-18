@@ -44,13 +44,13 @@ cd ~/dockersegid
 Check that it generated the file `list.py` properly. This file is the basis for the scripts, and it's vital that it is the correct format. This file is an array including an address with corresponding pubkey/privkey for each segid in the format `[segid, pubkey, privkey, address]` . 
 **THIS FILE CONTAINS THE PRIVATE KEYS FOR EACH ADDRESS. KEEP IT SAFE.**
 
-Run `./launchcontainers` Wait for each to launch.
+Run `sudo ./launchcontainers` Wait for each to launch.
 
-Run `./importprivkey` This will import the private key to each docker container's node.
+Run `sudo ./importprivkey` This will import the private key to each docker container's node.
 
 Run `./sendmany64 100`. This will send 100 coins to each docker node's komodod. Change `100` to how ever many coins you would like each docker container to stake. 
 
-You can check that each node received these coins by running `./kmdcliall "getbalance"`. This `kmdall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `./kmdcli 40 "getbalance"` 
+You can check that each node received these coins by running `sudo ./kmdcliall "getbalance"`. This `kmdall` script can be used to send any komodod-cli commands to all 64 nodes at once. To send a command to a specific node, use the `sudo ./kmdcli`. For example to send a getbalance command to the segid40 node, you would use `sudo ./kmdcli 40 "getbalance"` 
 
 Once you have confirmed that each node has received coins, run `./kmdall "setgenerate true 1"`
 
