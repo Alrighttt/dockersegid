@@ -34,4 +34,4 @@ USER komodo
 WORKDIR /home/komodo
 
 COPY entrypoint.sh /
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
