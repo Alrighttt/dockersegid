@@ -27,7 +27,7 @@ Edit the `config.py` file to the appropriate RPC settings for the node you will 
 
 Edit the `dockerstart.sh` file. Set PASSWD to a long string of random characters. Set SEEDIP to the IP of the node the docker nodes will connect to. The node the docker nodes will connect to must have its p2p port open. Edit the `ac_parameters` to match the parameters of your chain. Make sure you have every `ac_parameter` you would use to start a typical node on your chain. For example the default setting for this repo is for this chain `./komodod -ac_name=STAKETEST -ac_supply=10000000 -ac_reward=1000000000 -ac_staked=90`
 
-Edit the `kmdcli` script. Change `-rpcpassword` value to the same value as `PASSWD` set in `dockerstart.sh`.
+Edit the `kmdcli` script. Change `ac_name` to fit your chain and `-rpcpassword` to the same value as `PASSWD` set in `dockerstart.sh`.
 
 Stop your node's daemon and rename the wallet.dat
 ```shell
