@@ -8,7 +8,7 @@ PASSWD=RPCPASS98fjf9ufj9uj9dj3di3jdi3dgsfouoii2oii2oi2oi
 SEEDIP=127.0.0.1
 
 docker run -d --rm --name $SEGID -ti \
-  --mount "src=$SEGID,dst=/home/komodo" \
+  --mount "src=$SEGID,dst=/home/komodo/.komodo" \
   komodod \
   -rpcuser=$USER \
   -rpcpassword=$PASSWD \
