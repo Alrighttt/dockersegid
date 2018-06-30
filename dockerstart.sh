@@ -12,7 +12,7 @@ docker run -d --rm --name $SEGID -ti \
   komodod \
   -rpcuser=$USER \
   -rpcpassword=$PASSWD \
-  -pubkey=$PUBKEY \
+  -gen \
   -bind=127.0.0.1 \
   -rpcbind=127.0.0.1 \
   -rpcallowip=0.0.0.0/0 \
